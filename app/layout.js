@@ -1,11 +1,11 @@
-import { Geist } from "next/font/google";
+import { Space_Grotesk } from "next/font/google";
 import "./globals.css";
 
-// Load only Geist
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
+  variable: "--font-space-grotesk",
 });
+
 
 export const metadata = {
   title: "GKSHarsha's Portfolio",
@@ -15,7 +15,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} antialiased font-geist`}>
+      <body className={`${spaceGrotesk.variable}`}>
         {children}
       </body>
     </html>

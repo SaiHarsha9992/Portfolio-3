@@ -1,19 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk&display=swap');
 
 @import "tailwindcss";
 
 @import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
-
 :root {
-  --font-geist-sans: 'Geist', sans-serif;
+  --font-space-grotesk: 'Space Grotesk', sans-serif;
 }
 
-
 html, body {
-  font-family: var(--font-geist-sans);
   background-color: black;
+  font-family: var(--font-space-grotesk);
 }
 
 @theme inline {
