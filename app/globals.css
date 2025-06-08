@@ -5,8 +5,15 @@
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
+
+
+
+:root {
+  --font-geist-sans: 'Geist', sans-serif;
+  --font-geist-mono: 'Geist Mono', monospace;
+}
 html, body {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: var(--font-geist-sans);
   background-color: black;
 }
 
