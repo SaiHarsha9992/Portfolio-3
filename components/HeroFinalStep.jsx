@@ -164,6 +164,7 @@ export default function FinalStep({ step }) {
       >
         <AvatarCanvas />
       </motion.div>
+      
     </motion.div>
   );
 }
