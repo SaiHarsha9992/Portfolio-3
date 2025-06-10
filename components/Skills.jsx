@@ -1,6 +1,10 @@
+"use client";
+
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { IconCloud } from "@/components/magicui/icon-cloud";
 import { ShineBorder } from "./magicui/shine-border";
+import { AuroraBackground } from "./ui/aurora-background";
 
 const slugs = [
   "typescript",
@@ -61,57 +65,85 @@ const skillsText = {
 
 export default function Skills() {
   const images = slugs.map((slug) => `https://cdn.simpleicons.org/${slug}`);
-
   const [showTextSkills, setShowTextSkills] = useState(false);
 
   return (
-    <section className="w-full flex flex-col justify-center items-center py-12 px-4 pt-24 min-h-screen">
-      <div className="max-w-6xl w-full">
-        <h2 className="text-3xl font-bold text-white mb-8 text-center">
-          Skills & Technologies
-        </h2>
-
-        <div className="relative flex items-center justify-center overflow-hidden mb-8 min-h-[400px]">
-          {showTextSkills ? (
-            <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
-              {Object.entries(skillsText).map(([category, skills]) => (
-                <div
-                  key={category}
-                  className="bg-gray-800 bg-opacity-60 rounded-xl p-6 shadow-lg hover:shadow-2xl transition-shadow duration-300"
-                >
-                  <ShineBorder shineColor={["#A07CFE", "#FE8FB5", "#FFBE7B"]} />
-                  <h3 className="text-2xl font-bold mb-4 border-b-4 border-blue-500 pb-2 text-blue-400">
-                    {category}
-                  </h3>
-                  <div className="flex flex-wrap gap-3">
-                    {skills.map((skill) => (
-                      <span
-                        key={skill}
-                        className="bg-blue-700 bg-opacity-90 text-white px-3 py-1 rounded-full text-sm font-medium cursor-default select-none
-                         hover:bg-blue-600 transition"
-                        title={skill}
-                      >
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <IconCloud images={images} className="h-1/2" />
-          )}
-        </div>
-
-        <div className="flex justify-center">
-          <button
-            onClick={() => setShowTextSkills(!showTextSkills)}
-            className="px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-md text-white font-semibold transition"
+    <AuroraBackground>
+      <section className="w-full flex flex-col justify-center items-center py-12 px-4 pt-24 min-h-screen pb-28">
+        <div className="max-w-6xl w-full">
+          <motion.h2
+            className="text-3xl font-bold text-white mb-8 text-center pt-20"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
           >
-            {showTextSkills ? "Show Icon Cloud" : "Show Skills as Text"}
-          </button>
+            Skills & Technologies
+          </motion.h2>
+
+          <motion.div
+            className="relative flex items-center justify-center overflow-hidden mb-8 min-h-[400px]"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            {showTextSkills ? (
+              <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
+                {Object.entries(skillsText).map(([category, skills]) => (
+                  <div
+                    key={category}
+                    className="bg-gray-800 bg-opacity-60 rounded-xl p-6 shadow-lg hover:shadow-2xl transition-shadow duration-300"
+                  >
+                    <h3 className="text-2xl font-bold mb-4 border-b-4 border-blue-500 pb-2 text-blue-400">
+                      {category}
+                    </h3>
+                    <div className="flex flex-wrap gap-3">
+                      {skills.map((skill) => (
+                        <span
+                          key={skill}
+                          className="bg-opacity-90 text-white px-3 py-1 rounded-full text-sm font-medium cursor-default select-none
+                         hover:bg-blue-600 transition"
+                          title={skill}
+                        >
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                    <ShineBorder
+                      shineColor={["#A07CFE", "#FE8FB5", "#FFBE7B"]}
+                    />
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <motion.div
+                initial={{ scale: 0.95, opacity: 0 }}
+                whileInView={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+              >
+                <IconCloud images={images} className="h-1/2" />
+              </motion.div>
+            )}
+          </motion.div>
+
+          <motion.div
+            className="flex justify-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            <button
+              onClick={() => setShowTextSkills(!showTextSkills)}
+              className="px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-md text-white font-semibold transition z-50"
+            >
+              {showTextSkills ? "Show Icon Cloud" : "Show Skills as Text"}
+            </button>
+          </motion.div>
         </div>
-      </div>
-    </section>
+      </section>
+    </AuroraBackground>
   );
 }
