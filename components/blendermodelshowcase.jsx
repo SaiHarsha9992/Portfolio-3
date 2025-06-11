@@ -57,7 +57,7 @@ export default function BlenderModelsShowcase() {
             <img
               src={model.img}
               alt={model.name}
-              className="w-full h-full object-contain drop-shadow-lg"
+              className="w-full h-full object-contain drop-shadow-lg drag-none"
             />
             <div className="mt-3 text-lg font-semibold">{model.name}</div>
             {model.link ? (

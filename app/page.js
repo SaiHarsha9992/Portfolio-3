@@ -8,6 +8,8 @@ import Silk from "@/components/magicui/silk";
 import TypingChallenge from "@/components/Typing";
 import AchievementsSection from "@/components/Achievement";
 import BlenderModelsShowcase from "@/components/blendermodelshowcase";
+import VideoEditorShowcase from "@/components/GraphicVideo";
+import CommunitiesShowcase from "@/components/Communities";
 
 export default function Home() {
   return (
@@ -21,6 +23,8 @@ export default function Home() {
           <TypingChallenge />
           <AchievementsSection />
           <BlenderModelsShowcase />
+          <VideoEditorShowcase />
+          <CommunitiesShowcase />
         </div>
       </main>
     </>

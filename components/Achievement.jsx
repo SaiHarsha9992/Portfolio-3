@@ -80,7 +80,7 @@ export default function AchievementsSection() {
   return (
     <>
       <section
-        className="py-16 px-4 bg-black dark:bg-gray-900 z-50 bg-[radial-gradient(circle_500px_at_50%_200px,#06b6d4,transparent_70%),radial-gradient(circle_700px_at_50%_200px,#8b5cf6,transparent_100%)]
+        className="py-16 px-4 bg-black dark:bg-gray-900 z-50 bg-[radial-gradient(circle_250px_at_50%_200px,#06b6d4,transparent_100%),radial-gradient(circle_200px_at_50%_500px,#8b5cf6,transparent_100%)]
 "
       >
         <div className="max-w-6xl mx-auto">
