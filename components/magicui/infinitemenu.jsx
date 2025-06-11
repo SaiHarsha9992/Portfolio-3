@@ -1116,9 +1116,24 @@ const defaultItems = [
 
 export default function InfiniteMenu({ items = [] }) {
   const canvasRef = useRef(null);
+  const containerRef = useRef(null);
   const [activeItem, setActiveItem] = useState(null);
   const [isMoving, setIsMoving] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
+  useEffect(() => {
+    // Check if mobile device
+    const checkIfMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    checkIfMobile();
+    window.addEventListener("resize", checkIfMobile);
+
+    return () => {
+      window.removeEventListener("resize", checkIfMobile);
+    };
+  }, []);
   useEffect(() => {
     const canvas = canvasRef.current;
     let sketch;
@@ -1134,7 +1149,14 @@ export default function InfiniteMenu({ items = [] }) {
         items.length ? items : defaultItems,
         handleActiveItem,
         setIsMoving,
-        (sk) => sk.run()
+        (sk) => {
+          // Adjust sphere radius for mobile
+          if (isMobile) {
+            sk.SPHERE_RADIUS = 1.5;
+            sk.camera.position[2] = 2.5;
+          }
+          sk.run();
+        }
       );
     }
 
@@ -1149,8 +1171,11 @@ export default function InfiniteMenu({ items = [] }) {
 
     return () => {
       window.removeEventListener("resize", handleResize);
+      if (sketch) {
+        // Clean up WebGL resources if needed
+      }
     };
-  }, [items]);
+  }, [items, isMobile]);
 
   const handleButtonClick = () => {
     if (!activeItem?.link) return;
@@ -1162,95 +1187,95 @@ export default function InfiniteMenu({ items = [] }) {
   };
 
   return (
-    <div className="relative w-full h-full z-50">
+    <div ref={containerRef} className="relative w-full h-full z-50">
       <canvas
         id="infinite-grid-menu-canvas"
         ref={canvasRef}
-        className="cursor-grab w-full h-1/2 overflow-hidden relative outline-none active:cursor-grabbing"
+        className="cursor-grab w-full h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-[80vh] overflow-hidden relative outline-none active:cursor-grabbing"
       />
 
       {activeItem && (
         <>
-          {/* Title */}
+          {/* Title - Responsive positioning and sizing */}
           <h2
             className={`
-          select-none
-          absolute
-          text-black
-          bg-gradient-to-r from-cyan-400 to-purple-500
-          rounded-full
-          p-2
-          [font-size:4rem]
-          left-[1.6em]
-          top-1/2
-          transform
-          translate-x-[20%]
-          -translate-y-1/2
-          transition-all
-          ease-[cubic-bezier(0.25,0.1,0.25,1.0)]
-          ${
-            isMoving
-              ? "opacity-0 pointer-events-none duration-[100ms]"
-              : "opacity-100 pointer-events-auto duration-[500ms]"
-          }
-        `}
+              select-none
+              absolute
+              text-black
+              bg-gradient-to-r from-cyan-400 to-purple-500
+              rounded-full
+              p-2
+              text-[2rem] sm:text-[3rem] md:text-[4rem]
+              left-[50%] sm:left-[1.6em]
+              top-1/2 sm:top-1/2
+              transform
+              translate-x-[-50%] sm:translate-x-[20%]
+              -translate-y-1/2
+              transition-all
+              ease-[cubic-bezier(0.25,0.1,0.25,1.0)]
+              whitespace-nowrap
+              ${
+                isMoving
+                  ? "opacity-0 pointer-events-none duration-[100ms]"
+                  : "opacity-100 pointer-events-auto duration-[500ms]"
+              }
+            `}
           >
             {activeItem.title}
           </h2>
 
-          {/* Description */}
+          {/* Description - Responsive positioning and sizing */}
           <p
             className={`
-          select-none
-          absolute
-          max-w-[15ch]
-          text-[1.5rem]
-          text-black
-          text-normal
-          bg-gradient-to-r from-cyan-400 to-purple-500
-          rounded-md
-          p-6
-          top-1/2
-          right-[2.5%]
-          transition-all
-          ease-[cubic-bezier(0.25,0.1,0.25,1.0)]
-          ${
-            isMoving
-              ? "opacity-0 pointer-events-none duration-[100ms] translate-x-[-60%] -translate-y-1/2"
-              : "opacity-100 pointer-events-auto duration-[500ms] translate-x-[-90%] -translate-y-1/2"
-          }
-        `}
+              select-none
+              absolute
+              max-w-[15ch] sm:max-w-[20ch]
+              text-[1rem] sm:text-[1.25rem] md:text-[1.5rem]
+              text-black
+              text-normal
+              bg-gradient-to-r from-cyan-400 to-purple-500
+              rounded-md
+              p-4 sm:p-6
+              top-[60%] sm:top-1/2
+              right-[5%] sm:right-[2.5%]
+              transition-all
+              ease-[cubic-bezier(0.25,0.1,0.25,1.0)]
+              ${
+                isMoving
+                  ? "opacity-0 pointer-events-none duration-[100ms] translate-x-[-60%] -translate-y-1/2"
+                  : "opacity-100 pointer-events-auto duration-[500ms] translate-x-[-90%] -translate-y-1/2"
+              }
+            `}
           >
             {activeItem.description}
           </p>
 
-          {/* Action Button */}
+          {/* Action Button - Responsive positioning and sizing */}
           <div
             onClick={handleButtonClick}
             className={`
-        
-          absolute
-          left-1/2
-          z-10
-          w-[60px]
-          h-[60px]
-          grid
-          place-items-center
-          bg-gradient-to-r from-cyan-400 to-purple-500
-          border-[5px]
-          border-black
-          rounded-full
-          cursor-pointer
-          transition-all
-          ease-[cubic-bezier(0.25,0.1,0.25,1.0)]
-          ${
-            isMoving
-              ? "bottom-[-80px] opacity-0 pointer-events-none duration-[100ms] scale-0 -translate-x-1/2"
-              : "bottom-[3.8em] opacity-100 pointer-events-auto duration-[500ms] scale-100 -translate-x-1/2"
-          }
-        `}
+              absolute
+              left-1/2
+              z-10
+              w-[50px] sm:w-[60px]
+              h-[50px] sm:h-[60px]
+              grid
+              place-items-center
+              bg-gradient-to-r from-cyan-400 to-purple-500
+              border-[3px] sm:border-[5px]
+              border-black
+              rounded-full
+              cursor-pointer
+              transition-all
+              ease-[cubic-bezier(0.25,0.1,0.25,1.0)]
+              ${
+                isMoving
+                  ? "bottom-[-80px] opacity-0 pointer-events-none duration-[100ms] scale-0 -translate-x-1/2"
+                  : "bottom-[2em] sm:bottom-[3.8em] opacity-100 pointer-events-auto duration-[500ms] scale-100 -translate-x-1/2"
+              }
+            `}
           >
-            <p className="select-none relative text-black top-[2px] text-[26px]">
+            <p className="select-none relative text-black top-[2px] text-[20px] sm:text-[26px]">
               &#x2197;
             </p>
           </div>

@@ -1,21 +1,26 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import AvatarCanvas from './AvatarCanvas';
-import { FaGithub, FaHackerrank, FaLinkedin, FaLinkedinIn } from 'react-icons/fa';
-import { SiGeeksforgeeks, SiCodechef, SiLeetcode } from 'react-icons/si';
-import { AuroraText } from './magicui/aurora-text';
-import RotatingText from './magicui/RotatingText';
+import { motion } from "framer-motion";
+import AvatarCanvas from "./AvatarCanvas";
+import {
+  FaGithub,
+  FaHackerrank,
+  FaLinkedin,
+  FaLinkedinIn,
+} from "react-icons/fa";
+import { SiGeeksforgeeks, SiCodechef, SiLeetcode } from "react-icons/si";
+import { AuroraText } from "./magicui/aurora-text";
+import RotatingText from "./magicui/RotatingText";
 
 const skills = [
-  'AI Development',
-  'Full Stack',
-  'Next.js',
-  'Framer Motion',
-  'Typing 120 WPM',
-  'React',
-  'Tailwind CSS',
-  'Node.js',
+  "AI Development",
+  "Full Stack",
+  "Next.js",
+  "Framer Motion",
+  "Typing 120 WPM",
+  "React",
+  "Tailwind CSS",
+  "Node.js",
 ];
 
 const cardVariants = {
@@ -23,46 +28,46 @@ const cardVariants = {
   visible: { opacity: 1, y: 0 },
 };
 
-// Circular progress function omitted here for brevity
-
 export default function FinalStep({ step }) {
   return (
     <motion.div
-      className="relative flex flex-col min-w-screen md:flex-row items-center justify-between px-6 md:px-20 py-4 min-h-screen z-20 pt-4"
+      className="relative flex flex-col min-w-screen md:flex-row items-center justify-between px-4 sm:px-6 md:px-12 lg:px-20 py-4 min-h-screen z-20 pt-4 md:pt-0"
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: step === 3 ? 1 : 0, y: step === 3 ? 0 : 50 }}
       transition={{ duration: 1 }}
     >
       {/* Left Content */}
       <motion.div
-        className="w-full md:w-2/3 space-y-6"
+        className="w-full md:w-1/2 lg:w-2/3 space-y-4 sm:space-y-6"
         initial={{ opacity: 0, x: -100 }}
         animate={{ opacity: step === 3 ? 1 : 0, x: step === 3 ? 0 : -100 }}
         transition={{ duration: 1 }}
       >
-        <h1 className="text-6xl font-bold text-white flex items-center flex-wrap gap-4">
-  <RotatingText
-    texts={['Coder', 'Developer', 'Student']}
-    mainClassName="px-3 py-1 bg-cyan-300 text-black rounded-lg inline-block overflow-hidden"
-    staggerFrom="last"
-    initial={{ y: '100%' }}
-    animate={{ y: 0 }}
-    exit={{ y: '-120%' }}
-    staggerDuration={0.025}
-    splitLevelClassName="overflow-hidden"
-    transition={{ type: 'spring', damping: 30, stiffness: 400 }}
-    rotationInterval={2000}
-  />
-  <span>
-    Kedarinadh Sai <AuroraText>Harsha</AuroraText>
-  </span>
-</h1>
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+          <RotatingText
+            texts={["Coder", "Developer", "Student"]}
+            mainClassName="px-2 sm:px-3 py-1 bg-cyan-300 text-black rounded-lg inline-block overflow-hidden text-sm sm:text-base md:text-lg lg:text-xl"
+            staggerFrom="last"
+            initial={{ y: "100%" }}
+            animate={{ y: 0 }}
+            exit={{ y: "-120%" }}
+            staggerDuration={0.025}
+            splitLevelClassName="overflow-hidden"
+            transition={{ type: "spring", damping: 30, stiffness: 400 }}
+            rotationInterval={2000}
+          />
+          <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl">
+            Kedarinadh Sai <AuroraText>Harsha</AuroraText>
+          </span>
+        </h1>
 
-        <p className="text-lg text-blue-100">AI Developer | Full Stack | Speed Typist</p>
+        <p className="text-sm sm:text-base md:text-lg text-blue-100">
+          AI Developer | Full Stack | Speed Typist
+        </p>
 
         {/* GitHub Contributions Label */}
-        <p className="flex items-center text-lg font-semibold mb-4 text-green-400 w-full max-w-xl">
-          <FaGithub className="mr-2 text-green-400" size={24} />
+        <p className="flex items-center text-sm sm:text-base md:text-lg font-semibold mb-2 sm:mb-4 text-green-400 w-full max-w-xl">
+          <FaGithub className="mr-2 text-green-400" size={20} />
           GitHub Contributions
         </p>
 
@@ -70,9 +75,9 @@ export default function FinalStep({ step }) {
         <motion.div
           variants={cardVariants}
           initial="hidden"
-          animate={step === 3 ? 'visible' : 'hidden'}
+          animate={step === 3 ? "visible" : "hidden"}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="bg-[#161b22] p-6 rounded-lg border border-green-700 shadow-md text-white w-full max-w-2xl"
+          className="bg-[#161b22] p-3 sm:p-4 md:p-6 rounded-lg border border-green-700 shadow-md text-white w-full max-w-2xl"
         >
           <img
             src="https://ghchart.rshah.org/39d353/SaiHarsha9992"
@@ -82,9 +87,11 @@ export default function FinalStep({ step }) {
         </motion.div>
 
         {/* Coding Profiles Section */}
-        <div className="mt-8 max-w-2xl">
-          <h2 className="text-xl font-semibold mb-4 text-green-400">Coding Profiles</h2>
-          <div className="flex flex-wrap gap-6 text-white text-lg">
+        <div className="mt-4 sm:mt-6 md:mt-8 max-w-2xl">
+          <h2 className="text-lg sm:text-xl font-semibold mb-2 sm:mb-4 text-green-400">
+            Coding Profiles
+          </h2>
+          <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-3 sm:gap-4 md:gap-6 text-white text-sm sm:text-base md:text-lg">
             {/* GeeksforGeeks */}
             <a
               href="https://www.geeksforgeeks.org/user/saiharha9992/"
@@ -92,8 +99,8 @@ export default function FinalStep({ step }) {
               rel="noopener noreferrer"
               className="flex items-center gap-2 hover:text-green-500 transition"
             >
-              <SiGeeksforgeeks size={28} />
-              GeeksforGeeks
+              <SiGeeksforgeeks size={20} className="sm:w-6 sm:h-6" />
+              <span className="truncate">GeeksforGeeks</span>
             </a>
 
             {/* CodeChef */}
@@ -103,8 +110,8 @@ export default function FinalStep({ step }) {
               rel="noopener noreferrer"
               className="flex items-center gap-2 hover:text-orange-500 transition"
             >
-              <SiCodechef size={28} />
-              CodeChef
+              <SiCodechef size={20} className="sm:w-6 sm:h-6" />
+              <span className="truncate">CodeChef</span>
             </a>
 
             {/* LeetCode */}
@@ -114,8 +121,8 @@ export default function FinalStep({ step }) {
               rel="noopener noreferrer"
               className="flex items-center gap-2 hover:text-yellow-400 transition"
             >
-              <SiLeetcode size={28} />
-              LeetCode
+              <SiLeetcode size={20} className="sm:w-6 sm:h-6" />
+              <span className="truncate">LeetCode</span>
             </a>
 
             {/* GitHub */}
@@ -125,8 +132,8 @@ export default function FinalStep({ step }) {
               rel="noopener noreferrer"
               className="flex items-center gap-2 hover:text-blue-500 transition"
             >
-              <FaGithub size={28} />
-              GitHub
+              <FaGithub size={20} className="sm:w-6 sm:h-6" />
+              <span className="truncate">GitHub</span>
             </a>
 
             {/* HackerRank */}
@@ -136,20 +143,19 @@ export default function FinalStep({ step }) {
               rel="noopener noreferrer"
               className="flex items-center gap-2 hover:text-green-600 transition"
             >
-              <FaHackerrank size={28} />
-              HackerRank
+              <FaHackerrank size={20} className="sm:w-6 sm:h-6" />
+              <span className="truncate">HackerRank</span>
             </a>
 
-            {/* Monkeytype - no official icon, so simple text */}
-           {/* LinkedIn */}
+            {/* LinkedIn */}
             <a
               href="https://www.linkedin.com/in/g-kedarinadh-sai-harsha/"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 hover:text-blue-700 transition"
             >
-              <FaLinkedin size={28} />
-              LinkedIn
+              <FaLinkedin size={20} className="sm:w-6 sm:h-6" />
+              <span className="truncate">LinkedIn</span>
             </a>
           </div>
         </div>
@@ -157,14 +163,13 @@ export default function FinalStep({ step }) {
 
       {/* Avatar Canvas */}
       <motion.div
-        className="w-full md:max-w-2xl h-[500px] md:h-[750px] mt-10 md:mt-0 "
+        className="w-full md:w-1/2 lg:w-1/3 h-[300px] sm:h-[500px] md:h-[500px] lg:h-[600px] xl:h-[750px] mt-6 sm:mt-8 md:mt-0"
         initial={{ opacity: 0, x: 100 }}
         animate={{ opacity: step === 3 ? 1 : 0, x: step === 3 ? 0 : 100 }}
         transition={{ duration: 1 }}
       >
         <AvatarCanvas />
       </motion.div>
-      
     </motion.div>
   );
 }
