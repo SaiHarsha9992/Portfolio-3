@@ -11,6 +11,7 @@ import {
 import { SiGeeksforgeeks, SiCodechef, SiLeetcode } from "react-icons/si";
 import { AuroraText } from "./magicui/aurora-text";
 import RotatingText from "./magicui/RotatingText";
+import Image from "next/image";
 
 const skills = [
   "AI Development",
@@ -82,9 +83,11 @@ export default function FinalStep({ step }) {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="bg-[#161b22] p-3 sm:p-4 md:p-6 rounded-lg border border-green-700 shadow-md text-white w-full max-w-2xl"
         >
-          <img
-            src="https://ghchart.rshah.org/39d353/SaiHarsha9992"
+          <Image
+            src={"https://ghchart.rshah.org/39d353/SaiHarsha9992"}
             alt="GitHub Contributions"
+            width={800}
+            height={200}
             className="w-full"
           />
         </motion.div>
