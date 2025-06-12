@@ -10,6 +10,7 @@ import AchievementsSection from "@/components/Achievement";
 import BlenderModelsShowcase from "@/components/blendermodelshowcase";
 import VideoEditorShowcase from "@/components/GraphicVideo";
 import CommunitiesShowcase from "@/components/Communities";
+import ContactSection from "@/components/Contact";
 
 export default function Home() {
   return (
@@ -25,6 +26,7 @@ export default function Home() {
           <BlenderModelsShowcase />
           <VideoEditorShowcase />
           <CommunitiesShowcase />
+          <ContactSection />
         </div>
       </main>
     </>

@@ -13,6 +13,7 @@ export default function TypingChallenge() {
   const [wpm, setWpm] = useState(null);
   const [result, setResult] = useState("");
   const inputRef = useRef(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   // Generate new text when component mounts
   useEffect(() => {
@@ -20,10 +21,13 @@ export default function TypingChallenge() {
   }, []);
 
   useEffect(() => {
+    if (!referenceText) return;
+
     if (userInput.length === 1 && !startTime) {
       setStartTime(Date.now());
     }
-    if (userInput === referenceText) {
+
+    if (userInput === referenceText && referenceText !== "") {
       const end = Date.now();
       const minutes = (end - startTime) / 60000;
       const words = referenceText.trim().split(" ").length;
@@ -37,11 +41,12 @@ export default function TypingChallenge() {
         setResult("😎 Not fast enough! Try again.");
       }
     }
-  }, [userInput]);
+  }, [userInput, referenceText]);
 
   const generateText = () => {
     const wordsArray = generate(10);
     setReferenceText(wordsArray.join(" "));
+    setIsLoading(false);
   };
 
   const handleChange = (e) => {
@@ -57,7 +62,7 @@ export default function TypingChallenge() {
     setWpm(null);
     setResult("");
     generateText();
-    inputRef.current.focus();
+    inputRef.current?.focus();
   };
 
   const sendNotification = async (speed) => {
@@ -73,13 +78,21 @@ export default function TypingChallenge() {
     }
   };
 
+  if (isLoading) {
+    return (
+      <section className="py-20 text-center text-white">
+        <p>Loading typing challenge...</p>
+      </section>
+    );
+  }
+
   return (
     <section
       id="typing-challenge"
       className="relative py-20 px-4 text-white text-center overflow-hidden"
     >
       {/* Background Grid Layer */}
-      <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)]"></div>
+      <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_25px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)]"></div>
 
       <motion.h2
         initial={{ opacity: 0, y: 20 }}
@@ -117,7 +130,7 @@ export default function TypingChallenge() {
       <div className="mt-6 space-y-3">
         {wpm && <p className="text-xl text-green-400">Your WPM: {wpm}</p>}
         {result && <p className="text-xl text-pink-400">{result}</p>}
-        {endTime && (
+        {result && (
           <button
             onClick={reset}
             className="mt-4 px-6 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg"

@@ -43,10 +43,11 @@ export default function FinalStep({ step }) {
         animate={{ opacity: step === 3 ? 1 : 0, x: step === 3 ? 0 : -100 }}
         transition={{ duration: 1 }}
       >
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+        <h1 className="text-center flex flex-col items-start">
+          {/* First Line: Rotating Text (Bigger + Bold) */}
           <RotatingText
             texts={["Coder", "Developer", "Student"]}
-            mainClassName="px-2 sm:px-3 py-1 bg-cyan-300 text-black rounded-lg inline-block overflow-hidden text-sm sm:text-base md:text-lg lg:text-xl"
+            mainClassName="px-2 sm:px-3 py-1 bg-cyan-300 text-black rounded-lg inline-block overflow-hidden text-sm sm:text-base md:text-lg lg:text-4xl"
             staggerFrom="last"
             initial={{ y: "100%" }}
             animate={{ y: 0 }}
@@ -56,7 +57,9 @@ export default function FinalStep({ step }) {
             transition={{ type: "spring", damping: 30, stiffness: 400 }}
             rotationInterval={2000}
           />
-          <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl">
+
+          {/* Second Line: Your Name */}
+          <span className="mt-4 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-white">
             Kedarinadh Sai <AuroraText>Harsha</AuroraText>
           </span>
         </h1>
@@ -163,7 +166,7 @@ export default function FinalStep({ step }) {
 
       {/* Avatar Canvas */}
       <motion.div
-        className="w-full md:w-1/2 lg:w-1/3 h-[300px] sm:h-[500px] md:h-[500px] lg:h-[600px] xl:h-[750px] mt-6 sm:mt-8 md:mt-0"
+        className="w-full md:w-1/2 lg:w-3/4 h-[300px] sm:h-[500px] md:h-[500px] lg:h-[600px] xl:h-[750px] mt-6 sm:mt-8 md:mt-0"
         initial={{ opacity: 0, x: 100 }}
         animate={{ opacity: step === 3 ? 1 : 0, x: step === 3 ? 0 : 100 }}
         transition={{ duration: 1 }}
