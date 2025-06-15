@@ -20,7 +20,7 @@ const communities = [
     color: "text-cyan-400",
   },
   {
-    name: "Google Developer Group (GDG) Vizag",
+    name: "Google Developer Group (GDG) ACET",
     role: "🎯 Co-Organizer",
     icon: (
       <img
@@ -30,7 +30,7 @@ const communities = [
       />
     ),
     description:
-      "At GDG Vizag, I contribute as a design and outreach co-organizer, helping run local tech events, create designs for sessions, and support speaker management and student engagement.",
+      "At GDG ACET, I contribute as a design and outreach co-organizer, helping run local tech events, create designs for sessions, and support speaker management and student engagement.",
     link: "https://chat.whatsapp.com/EWFeY92QdLz3rU5iiSGrYo",
     color: "text-purple-400",
   },
