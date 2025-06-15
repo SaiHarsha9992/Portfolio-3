@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { IconCloud } from "@/components/magicui/icon-cloud";
 import { ShineBorder } from "./magicui/shine-border";
 import { AuroraBackground } from "./ui/aurora-background";
+import { RainbowButton } from "./magicui/rainbow-button";
 
 const slugs = [
   "typescript",
@@ -93,9 +94,9 @@ export default function Skills() {
                 {Object.entries(skillsText).map(([category, skills]) => (
                   <div
                     key={category}
-                    className="bg-gray-800 bg-opacity-60 rounded-xl p-6 shadow-lg hover:shadow-2xl transition-shadow duration-300"
+                    className="bg-opacity-60 border-2 border-amber-50 rounded-xl p-6 shadow-lg hover:shadow-2xl transition-shadow duration-300"
                   >
-                    <h3 className="text-2xl font-bold mb-4 border-b-4 border-blue-500 pb-2 text-blue-400">
+                    <h3 className="text-2xl font-bold mb-4 border-b-4 border-cyan-500 pb-2 text-white">
                       {category}
                     </h3>
                     <div className="flex flex-wrap gap-3">
@@ -103,7 +104,7 @@ export default function Skills() {
                         <span
                           key={skill}
                           className="bg-opacity-90 text-white px-3 py-1 rounded-full text-sm font-medium cursor-default select-none
-                         hover:bg-blue-600 transition"
+                         hover:bg-cyan-600 transition"
                           title={skill}
                         >
                           {skill}
@@ -135,12 +136,9 @@ export default function Skills() {
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <button
-              onClick={() => setShowTextSkills(!showTextSkills)}
-              className="px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-md text-white font-semibold transition z-50"
-            >
+            <RainbowButton onClick={() => setShowTextSkills(!showTextSkills)}>
               {showTextSkills ? "Show Icon Cloud" : "Show Skills as Text"}
-            </button>
+            </RainbowButton>
           </motion.div>
         </div>
       </section>
